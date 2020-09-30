@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Quiz </h1>
+    <div class="quiz-container">
+      <div id="q"></div>
+      <div id="answer"></div>    
+    <button id="startQuiz">Start Quiz</button>
+    <button id="a" class= "answerButton" value="a" onclick=testAnswer(this.value)>choice A</button>
+    <button id="b" class= "answerButton" value="b" onclick=testAnswer(this.value)>choice B</button>
+    <button id="c" class= "answerButton" value="c" onclick=testAnswer(this.value)>choice C</button>
+    
+    </div>
+    <div id="results"> Score :</div>
+    <div id="quizTimer"> Time Left : </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+
+
+
+</html>
