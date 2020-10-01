@@ -47,23 +47,22 @@ var score = 0;
 var timeLeft = 45;
 var timerInterval;
 var i = 0;
-
+// event listener to start the game
 startQuiz.addEventListener("click", start);
-
+// Function to start the game and timer
 function start() {
-    nextQ();
     startQuiz.style.display = "none";
     timerInterval = setInterval(function () {
         timeLeft--;
         // console.log(timeLeft)
         quizTimer.textContent = "Time Left: " + timeLeft;
-        if (timeLeft === 0) {
-            clearInterval(timerInterval);
-            console.log("time up")
+        if (timeLeft <= 0) {
+            endGame()
         }
     }, 1000)
+    nextQ();
 }
-
+// function to call the next question in the object
 function nextQ() {
     document.getElementById("answer").innerHTML = "";
     var q = " Question: " + myQuestions[i].question;
@@ -75,19 +74,20 @@ function nextQ() {
     
     
 }
+//function to test answers 
 function testAnswer(val) {
     console.log(val)
     if (val === myQuestions[i].correctAnswer){
         alert("correct")
         i++;
         score++;
-        document.getElementById("answer").innerHTML = resultsContainer;
+        document.getElementById("answer").textContent = resultsContainer;
         checkScore();
 
     }else{
         alert("wrong")
         i++;
-        timeLeft - 5;
+        timeLeft-=10; 
        checkScore();
     }
 }
@@ -99,19 +99,44 @@ function checkScore(){
     }
 }
   function endGame(){ 
+    clearInterval(timerInterval);
+    
     document.getElementById("answer").innerHTML = "";
     document.getElementById("q").innerHTML = "";
-    alert("game over you scored " + score)
-  } 
+    alert("game over your time left: " + timeLeft)
+    i=0;
+    var initials = prompt ("enter your initials: ")
+    console.log(initials)
+    if(initials != null){
+        var score = timeLeft
+        var highScores = JSON.parse(localStorage.getItem("highScores")) || []
     
+        var storeHighScore = {
+            score,
+            initials
+        } 
+        highScores.push(storeHighScore)
+        localStorage.setItem("highScores", JSON.stringify(highScores))
 
+    }
+    timeLeft= 45;
+    ViewHighScores()
 
-    // create a function for the timer
+    }
+    function ViewHighScores(){
+        document.getElementById("highScores").innerHTML = "";
+       var scores = JSON.parse(localStorage.getItem("highScores"))
+       scores.forEach(function(score){
+        var list = document.createElement("li");
+        list.textContent = score.initials + " : " + score.score   
+        document.getElementById("highScores").appendChild(list)
 
+       });
+        var playAgain = document.createElement("button")
+        playAgain.textContent = "Play Again!"
+        playAgain.onclick= start
+        document.getElementById("highScores").appendChild(playAgain)
+    }
 
-
-
-//create a function for that displays the end score
-
-
-//create a function that ends the game and lets user play again
+  
+ 

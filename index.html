@@ -11,19 +11,25 @@
 </head>
 
 <body>
-    <h1>Quiz </h1>
+    <h1>Test your skills on web design!</h1>
     <div class="quiz-container">
       <div id="q"></div>
-      <div id="answer"></div>    
-    <button id="startQuiz">Start Quiz</button>
+      <div id="answer"></div>
+                
+    <button id="startQuiz">Start Quiz</button> 
+    <br>
     <button id="a" class= "answerButton" value="a" onclick=testAnswer(this.value)>choice A</button>
+    <br>
     <button id="b" class= "answerButton" value="b" onclick=testAnswer(this.value)>choice B</button>
+    <br>
     <button id="c" class= "answerButton" value="c" onclick=testAnswer(this.value)>choice C</button>
     
     </div>
-    <div id="results"> Score :</div>
+    <div id="results"></div>
     <div id="quizTimer"> Time Left : </div>
-
+      <ol id="highScores">      
+      <ol>
+     <div id="playAgain"></div>
 
     <script src="script.js"></script>
 
