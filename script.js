@@ -10,7 +10,7 @@
 // need to set a timer for quiz in JS
 // 
 
-//When a question shows up on screen there needs to be a mutibile choice of answers
+//When a question shows up on screen there needs to be a multiple choice of answers
 // a wrong answer on the quiz will take time from the clock
 // when all questions are answered or the timer reaches 0 the game is over
 // show score and let user save initials 
@@ -32,12 +32,12 @@ var myQuestions = [
     },
     {
         question: "Functions are code that _____",
-        answers: ["A: Hide Code ","B: Runs code over and over ", "C: creates a loop of code "],
+        answers: ["A: Hide Code ", "B: Runs code over and over ", "C: creates a loop of code "],
         correctAnswer: "b"
     },
     {
         question: "HTML stands for _____",
-        answers: ["A: Hyper Threat Management Level ","B: Happy Text Making Language ","C: Hyper Text Markup Language"],
+        answers: ["A: Hyper Threat Management Level ", "B: Happy Text Making Language ", "C: Hyper Text Markup Language"],
         correctAnswer: "c"
     }
 ];
@@ -70,73 +70,77 @@ function nextQ() {
     for (var j = 0; j < myQuestions[i].answers.length; j++) {
         var a = myQuestions[i].answers[j];
         document.getElementById("answer").append(a);
-    } 
-    
-    
+    }
+
+
 }
 //function to test answers 
 function testAnswer(val) {
     console.log(val)
-    if (val === myQuestions[i].correctAnswer){
+    if (val === myQuestions[i].correctAnswer) {
         alert("correct")
         i++;
         score++;
         document.getElementById("answer").textContent = resultsContainer;
         checkScore();
 
-    }else{
+    } else {
         alert("wrong")
         i++;
-        timeLeft-=10; 
-       checkScore();
+        timeLeft -= 10;
+        checkScore();
     }
 }
-function checkScore(){
-    if (i==3){
+
+//function to check score or end game
+function checkScore() {
+    if (i == 3) {
         endGame();
     } else {
         nextQ()
     }
 }
-  function endGame(){ 
+// the function to end the game and run the high scores function
+function endGame() {
     clearInterval(timerInterval);
-    
+
     document.getElementById("answer").innerHTML = "";
     document.getElementById("q").innerHTML = "";
     alert("game over your time left: " + timeLeft)
-    i=0;
-    var initials = prompt ("enter your initials: ")
+    i = 0;
+    var initials = prompt("enter your initials: ")
     console.log(initials)
-    if(initials != null){
+    if (initials != null) {
         var score = timeLeft
         var highScores = JSON.parse(localStorage.getItem("highScores")) || []
-    
+
         var storeHighScore = {
             score,
             initials
-        } 
+        }
         highScores.push(storeHighScore)
         localStorage.setItem("highScores", JSON.stringify(highScores))
 
     }
-    timeLeft= 45;
+    timeLeft = 45;
     ViewHighScores()
 
-    }
-    function ViewHighScores(){
-        document.getElementById("highScores").innerHTML = "";
-       var scores = JSON.parse(localStorage.getItem("highScores"))
-       scores.forEach(function(score){
+}
+
+//function to view high scores and run a play again button shows
+function ViewHighScores() {
+    document.getElementById("highScores").innerHTML = "";
+    var scores = JSON.parse(localStorage.getItem("highScores"))
+    scores.forEach(function (score) {
         var list = document.createElement("li");
-        list.textContent = score.initials + " : " + score.score   
+        list.textContent = score.initials + " : " + score.score
         document.getElementById("highScores").appendChild(list)
 
-       });
-        var playAgain = document.createElement("button")
-        playAgain.textContent = "Play Again!"
-        playAgain.onclick= start
-        document.getElementById("highScores").appendChild(playAgain)
-    }
+    });
+    var playAgain = document.createElement("button")
+    playAgain.textContent = "Play Again!"
+    playAgain.onclick = start
+    document.getElementById("highScores").appendChild(playAgain)
+}
 
-  
- 
+
