@@ -27,17 +27,17 @@ var answerButton = document.getElementsByClassName("answerButton");
 var myQuestions = [
     {
         question: "DOM stands for ____",
-        answers: ["A: Document Object Model ", " B: Document Operation Method ", " C: Download Object Model "],
+        answers: ["A: Document Object Model   ", " B: Document Operation Method   ", "C: Download Object Model "],
         correctAnswer: "a"
     },
     {
         question: "Functions are code that _____",
-        answers: ["A: Hide Code ", "B: Runs code over and over ", "C: creates a loop of code "],
+        answers: ["A: Hide Code   ", "B: Runs code over and over   ", "C: creates a loop of code "],
         correctAnswer: "b"
     },
     {
         question: "HTML stands for _____",
-        answers: ["A: Hyper Threat Management Level ", "B: Happy Text Making Language ", "C: Hyper Text Markup Language"],
+        answers: ["A: Hyper Threat Management Level   ", "B: Happy Text Making Language   ", "C: Hyper Text Markup Language"], 
         correctAnswer: "c"
     }
 ];
